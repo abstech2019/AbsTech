@@ -1,20 +1,132 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DicomViewer.master.cs" Inherits="AbsTech.WebScreen.DicomViewer" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="../Content/bootstrap-3.1.0.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-3.0.0.min.js"></script>
+    <script src="../Scripts/bootstrap-3.1.0.min.js"></script>
+    <%--<script src="../Scripts/jquery-1.11.1.min.js"></script>--%>
+    <link href="/../css/MasterPage.css" rel="stylesheet" />
+    <style>
+        #dvLoading {
+            background: url(loader.gif) no-repeat center center;
+            height: 100px;
+            width: 100px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            margin: -25px 0 0 -25px;
+        }
+
+        .ui-widget-overlay {
+            background: url(overlay.png) repeat;
+            left: 0;
+            opacity: 0.9;
+            position: absolute;
+            top: 0;
+        }
+    </style>
+    <script type="text/javascript">
+
+                $.fn.SetOverlayHeightWidth = function () {
+
+                    $(this).height($(document).height());
+
+                    $(this).width($(document).width());
+
+                };
+
+                $(document).ready(function () {
+
+                    $(".overlayforaddNote").show().SetOverlayHeightWidth();
+
+                    $('#dvLoading').fadeOut(4000);
+
+                    setTimeout(function () { $(".overlayforaddNote").hide() }, 4000);
+
+                });
+
+            </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
+        <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </ajax:ToolkitScriptManager>
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="../Images/AbsTechIcon.png" style="width: 75px; margin-top: -10px" /></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome AbsTech
+                                       
+                            <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-content">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="http://placehold.it/120x120"
+                                                    alt="Alternate Text" class="img-responsive" />
+                                                <p class="text-center small">
+                                                    <a href="#">Change Pic</a>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <span>AbsTechnology</span>
+                                                <p class="text-muted small">
+                                                    abstech2019@gmail.com
+                                                </p>
+                                                <div class="divider">
+                                                </div>
+                                                <a href="#" class="btn btn-primary btn-sm active">View Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="navbar-footer">
+                                        <div class="navbar-footer-content">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a href="#" class="btn btn-default btn-sm">Change Password</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a href="http://www.jquery2dotnet.com" class="btn btn-default btn-sm pull-right">Sign Out</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            
+            <div id="dvLoading">
+            </div>
+            <div style="display: none;" class="ui-widget-overlay overlayforaddNote">
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
 </body>
 </html>
