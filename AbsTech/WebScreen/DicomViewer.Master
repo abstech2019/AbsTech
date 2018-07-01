@@ -124,6 +124,11 @@
             </div>
             <div style="display: none;" class="ui-widget-overlay overlayforaddNote">
             </div>
+            
+    <br />
+    <br />
+    <br />
+    <br />
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

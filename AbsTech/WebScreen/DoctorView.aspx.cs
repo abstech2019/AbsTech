@@ -17,7 +17,7 @@ namespace AbsTech.WebScreen
 
         protected void btn_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(100000);
+            Thread.Sleep(5000);
         }
     }
 }
