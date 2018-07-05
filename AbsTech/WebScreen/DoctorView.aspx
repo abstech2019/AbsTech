@@ -74,6 +74,63 @@
     <script type="text/javascript" src="../Scripts/DataTables-1.10.6/extensions/ColVis/js/dataTables.colVis.min.js"></script>
     <script src="../Scripts/DataTables-1.10.6/extensions/ColReorder/js/dataTables.colReorder.min.js"
         type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            gvPatientDetailsDatatable();
+           // PatientDetailsSchedule();
+        });
+    </script>
+    <script type="text/javascript">
+        function gvPatientDetailsDatatable() {
+            var table = $("#<% = gvPatientDetails.ClientID%>").dataTable({
+                "dom": "<'#dtDomId_gvPatientDetails' lrtip>",
+                "bProcessing": false,
+                "scrollX": true,
+                "scrollY": 350,
+                "aaSorting": [],
+                "bAutoWidth": true,
+                "bInfo": false,
+                "bPaginate": false,
+                "bFilter": false,
+                "scrollCollapse": true,
+                "aoColumns": [
+                    { "bSortable": false, "sWidth": "20px" },//Draft Id
+                    { "bSortable": false, "sWidth": "50px" },//pos
+                ]
+            });
+            return;
+        };
+    </script>
+    <script type="text/javascript">
+         function PatientDetailsSchedule() {
+             var grd_scheduleSlabDetails = $("#<%=gvPatientDetails.ClientID%>");
+            $(grd_scheduleSlabDetails).find("tbody").contextmenu({
+                delegate: "tr",
+                menu: "#right-mouse-click-options-patientDetails",
+                select: function (event, ui) {
+                    var menuId = ui.item[0].childNodes[0].id;
+                    if (menuId === "VDGNE") {
+                        
+                    }
+                },
+                beforeOpen: function (event, ui) {
+
+                    $(grd_scheduleSlabDetails).find("tr").removeClass("right-click-row ui-selected-rows");
+
+                    var idDraft = "";
+
+                    if (ui.target[0].parentElement.parentElement.id.trim() !== "") {
+                        idDraft = ui.target[0].parentElement.parentElement.id.trim();
+                    } else {
+                        idDraft = ui.target[0].parentElement.id.trim();
+                    }
+
+                    $("#" + idDraft + "").addClass("right-click-row");
+
+                }
+            });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdateProgress ID="updtProgressPnlMain" AssociatedUpdatePanelID="updtPnlMain" runat="server">
@@ -89,6 +146,11 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
+    <ul id="right-mouse-click-options-patientDetails" class="dropdown-menu" data-role="dropdown">
+         <li><span class="fa fa-file-text-o" id="DDG" style="color:red;margin-right:5px"></span>Download</li>
+        <li><span class="fa fa-file-text-o" id="EDG" style="color:green;margin-right:5px"></span>View Note</li>
+        <li><span class="fa fa-file-text-o" id="VDG" style="color:orange;margin-right:5px"></span>View Report</li>
+    </ul>
     <asp:UpdatePanel ID="updtPnlMain" runat="server">
         <ContentTemplate>
             <div class="container">
@@ -98,10 +160,10 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-folder-open"></i>Filter</a>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-folder-open"></i>&nbsp;Filter</a>
                                     </h4>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
+                                <div id="collapseOne" class="panel-collapse collapse out">
                                     <div class="panel-body">
                                         <div class="checkbox">
                                             <div class="checkbox checkbox-success checkbox-inline">
@@ -173,6 +235,22 @@
                                                 <label for="inlineCheckbox14">PT</label>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <i class="fa fa-language fa-spin"></i>&nbsp;Actions
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel">
+                                    <div class="panel-body">
+                                        <ul class="icons-preview">
+                                            <li class="IconModify"><i class="fa-2x fa fa-tripadvisor"></i><small>Retrieve & View</small></li>
+                                            <li class="IconModify"><i class="fa-2x fa fa-leanpub"></i><small>Create Report</small></li>
+                                            <li class="IconModify"><i class="fa-2x fa fa-file-text"></i><small>Create Template</small></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -252,36 +330,37 @@
                                 </tr>
                             </table>
                         </div>
+
+
+                        <asp:GridView ID="gvPatientDetails" runat="server" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" CssClass="table table-bordered table-hover table-responsive" OnPreRender="gvPatientDetails_PreRender" Style="table-layout: fixed; -ms-word-wrap: break-word; word-wrap: break-word;" Width="100%" Height="300px">
+                            <HeaderStyle CssClass="bg-clouds" />
+                            <EmptyDataTemplate>
+                                No record
+                            </EmptyDataTemplate>
+                            <Columns>
+
+                                <asp:TemplateField HeaderText="Image" ItemStyle-CssClass="Image">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_lbl_gradeId" runat="server" CssClass="control-label" Text='<%#Eval("rowid")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Description" ItemStyle-CssClass="Description">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_lbl_gradeImage" runat="server" CssClass="control-label" Text='<%#Eval("Grade_Image_dec")%>'></asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                            </Columns>
+                        </asp:GridView>
+
+
                     </div>
                 </div>
-                <div id="light" class="white_content">
-                    <div class="row">
-                        <table class="testTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Legacy ID</th>
-                                    <th>Parent ID</th>
-                                    <th>Name</th>
-                                    <th>Inform</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Abdul Fahim Khan</td>
-                                    <td>Abdul Fahim Khan</td>
-                                    <td>Abdul Fahim Khan</td>
-                                    <td>Abdul Fahim Khan</td>
-                                    <td>Abdul Fahim Khan</td>
-                                    <td><a href=""><i class="fa fa-external-link-square themeTextColor" aria-hidden="true"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="row">
                 </div>
             </div>
-            <asp:Button ID="btn" runat="server" CssClass="btn btn-primary" Text="Button" OnClick="btn_Click" />
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
