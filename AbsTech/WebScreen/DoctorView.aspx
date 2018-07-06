@@ -248,12 +248,8 @@
                                     <div class="panel-body">
                                         <ul class="icons-preview">
                                             <li class="IconModify"><i class="fa-2x fa fa-tripadvisor"></i><small>Retrieve & View</small></li>
-                                            <li class="IconModify"><i class="fa-2x fa-book"></i><small>View Note</small></li>
-                                            <li class="IconModify"><i class="fa-2x fa fa-repeat"></i><small>Redo Report</small></li>
-                                            <li class="IconModify"><i class="fa-2x fa fa-sticky-note"></i><small>Report Review</small></li>
                                             <li class="IconModify"><i class="fa-2x fa fa-leanpub"></i><small>Create Report</small></li>
                                             <li class="IconModify"><i class="fa-2x fa fa-file-text"></i><small>Create Template</small></li>
-                                            <li class="IconModify"><i class="fa-2x fa fa-money"></i><small>Billing</small></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -336,7 +332,7 @@
                         </div>
 
 
-                        <asp:GridView ID="gvPatientDetails" runat="server" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" CssClass="table table-bordered table-hover table-responsive" OnPreRender="gvPatientDetails_PreRender" Style="table-layout: fixed; -ms-word-wrap: break-word; word-wrap: break-word;" Width="100%" Height="400px">
+                        <asp:GridView ID="gvPatientDetails" runat="server" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" CssClass="table table-bordered table-hover table-responsive" OnPreRender="gvPatientDetails_PreRender" Style="table-layout: fixed; -ms-word-wrap: break-word; word-wrap: break-word;" Width="100%" Height="300px">
                             <HeaderStyle CssClass="bg-clouds" />
                             <EmptyDataTemplate>
                                 No record
