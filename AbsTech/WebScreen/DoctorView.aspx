@@ -77,58 +77,120 @@
     <script type="text/javascript">
         $(document).ready(function () {
             gvPatientDetailsDatatable();
-           // PatientDetailsSchedule();
+            // PatientDetailsSchedule();
         });
     </script>
     <script type="text/javascript">
+        //i=showing records
+        //p = paginate
+        //tc= show/hide columns
         function gvPatientDetailsDatatable() {
             var table = $("#<% = gvPatientDetails.ClientID%>").dataTable({
-                "dom": "<'#dtDomId_gvPatientDetails' lrtip>",
+                //"dom": "<'#dtDomId_gvPatientDetails' lrtip>",
+                //"dom": "<'row'<'col-md-4'l><'col-md-2'TC><'col-md-6'f>r>t<'row'<'col-md-5 'i><'col-md-7'p>>",
+                "dom": "<'row'<'col-md-4'l><'col-md-6'f>r>t<'row'<'col-md-5 'i><'col-md-7'p>>",
+                "tableTools": {
+                    "sSwfPath": "../Scripts/DataTables-1.10.6/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                    "aButtons": [{
+                        "sExtends": "xls",
+                        "oSelectorOpts": { filter: 'applied', order: 'current' },
+                        "sButtonText": "Excel",
+                        "mColumns": "visible",
+                        "sPdfOrientation": "landscape",
+                        "sFileName": "*.xls",
+                        "sTitle": "Patients Report",
+                        "bFooter": true
+                    }
+                    ]
+                }, responsive: true,
                 "bProcessing": false,
                 "scrollX": true,
                 "scrollY": 350,
                 "aaSorting": [],
-                "bAutoWidth": true,
-                "bInfo": false,
-                "bPaginate": false,
-                "bFilter": false,
-                "scrollCollapse": true,
+                "bAutoWidth": false,
+                //"bInfo": false,
+                //"bPaginate": false,
+                "bFilter": true,
+                //"scrollCollapse": true,
                 "aoColumns": [
                     { "bSortable": false, "sWidth": "20px" },//Draft Id
                     { "bSortable": false, "sWidth": "50px" },//pos
+                    { "bSortable": false, "sWidth": "50px" },//pos
+                    { "bSortable": false, "sWidth": "50px" },//pos
+                ]
+            }).columnFilter(
+            {
+                sPlaceHolder: "head:before",
+                aoColumns:
+                [
+                        { type: "text" },
+                        { type: "text" },
+                        { type: "text" },
+                        { type: "text" }
                 ]
             });
+
+            //new $.fn.dataTable.FixedColumns(table, {
+            //    //"iLeftColumns": 10,
+            //    //"iRightColumns": 1,
+            //    "sHeightMatch": "auto"
+            //});
+            //return;
+                //"aoColumns": [
+                //    { "bSortable": false, "sWidth": "20px" },//Draft Id
+                //    { "bSortable": false, "sWidth": "50px" },//pos
+                //]
+           // };
             return;
         };
     </script>
     <script type="text/javascript">
-         function PatientDetailsSchedule() {
-             var grd_scheduleSlabDetails = $("#<%=gvPatientDetails.ClientID%>");
-            $(grd_scheduleSlabDetails).find("tbody").contextmenu({
+        function PatientDetailsSchedule() {
+            $("#dtDomId_gvPatientDetails").find(".dataTables_scrollBody tbody").contextmenu({
                 delegate: "tr",
                 menu: "#right-mouse-click-options-patientDetails",
                 select: function (event, ui) {
+                    alert("hello");
                     var menuId = ui.item[0].childNodes[0].id;
                     if (menuId === "VDGNE") {
-                        
+
                     }
                 },
                 beforeOpen: function (event, ui) {
 
-                    $(grd_scheduleSlabDetails).find("tr").removeClass("right-click-row ui-selected-rows");
+                    alert('hi');
+                    //var oipId = "";
 
-                    var idDraft = "";
+                    //if (ui.target[0].parentElement.parentElement.id.trim() !== "") {
+                    //    oipId = ui.target[0].parentElement.parentElement.id.trim()
 
-                    if (ui.target[0].parentElement.parentElement.id.trim() !== "") {
-                        idDraft = ui.target[0].parentElement.parentElement.id.trim();
-                    } else {
-                        idDraft = ui.target[0].parentElement.id.trim();
-                    }
+                    //} else {
+                    //    oipId = ui.target[0].parentElement.id.trim()
+                    //}
+                    //var _trid = sessionStorage.getItem("trID");
+                    //if (_trid != null || _trid != "") {
+                    //    $(".dataTables_scrollBody  tbody #" + _trid + "").css("background-color", "");
+                    //}
+                    ////$(".dataTables_scrollBody  tbody #" + oipId + "").css("background-color", "antiquewhite").siblings().css("background-color", "");
+                    //$(".dataTables_scrollBody  tbody #" + oipId + "").css("background-color", "burlywood");
+                    //sessionStorage.setItem("trID", oipId);
 
-                    $("#" + idDraft + "").addClass("right-click-row");
 
                 }
             });
+
+        }
+        function CallClickEvent(fsCall) {
+            if (fsCall==='RView') {
+                $("#<%=btnRetreiveAndView.ClientID%>").click();
+            }
+            else if (fsCall === 'CreateReport') {
+                $("#<%=btnCreateReport.ClientID%>").click();
+            }
+            else if (fsCall === 'CreateTemplate') {
+                $("#<%=btnCreateTemplate.ClientID%>").click();
+            }
+            //alert(fsCall);
         }
     </script>
 </asp:Content>
@@ -147,9 +209,9 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     <ul id="right-mouse-click-options-patientDetails" class="dropdown-menu" data-role="dropdown">
-         <li><span class="fa fa-file-text-o" id="DDG" style="color:red;margin-right:5px"></span>Download</li>
-        <li><span class="fa fa-file-text-o" id="EDG" style="color:green;margin-right:5px"></span>View Note</li>
-        <li><span class="fa fa-file-text-o" id="VDG" style="color:orange;margin-right:5px"></span>View Report</li>
+        <li><span class="fa fa-file-text-o" id="DDG" style="color: red; margin-right: 5px"></span>Download</li>
+        <li><span class="fa fa-file-text-o" id="EDG" style="color: green; margin-right: 5px"></span>View Note</li>
+        <li><span class="fa fa-file-text-o" id="VDG" style="color: orange; margin-right: 5px"></span>View Report</li>
     </ul>
     <asp:UpdatePanel ID="updtPnlMain" runat="server">
         <ContentTemplate>
@@ -245,11 +307,17 @@
                                     </h4>
                                 </div>
                                 <div id="collapseTwo" class="panel">
+                                    <div style="display:none">
+                                        <asp:Button ID="btnRetreiveAndView" runat="server" OnClick="btnRetreiveAndView_Click" />
+                                        <asp:Button ID="btnCreateReport" runat="server" OnClick="btnCreateReport_Click" />
+                                        <asp:Button ID="btnCreateTemplate" runat="server" OnClick="btnCreateTemplate_Click" />
+
+                                    </div>
                                     <div class="panel-body">
                                         <ul class="icons-preview">
-                                            <li class="IconModify"><i class="fa-2x fa fa-tripadvisor"></i><small>Retrieve & View</small></li>
-                                            <li class="IconModify"><i class="fa-2x fa fa-leanpub"></i><small>Create Report</small></li>
-                                            <li class="IconModify"><i class="fa-2x fa fa-file-text"></i><small>Create Template</small></li>
+                                            <li class="IconModify" onclick="CallClickEvent('RView')"><i class="fa-2x fa fa-tripadvisor"></i><small>Retrieve & View</small></li>
+                                            <li class="IconModify" onclick="CallClickEvent('CreateReport')"><i class="fa-2x fa fa-leanpub"></i><small>Create Report</small></li>
+                                            <li class="IconModify" onclick="CallClickEvent('CreateTemplate')"><i class="fa-2x fa fa-file-text"></i><small>Create Template</small></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -294,22 +362,23 @@
                             <div class="form-group row">
 
                                 <div class="col-xs-2">
-                                    <asp:Button ID="btnSearch" CssClass="form-control btn btn-primary" runat="server" Text="Search" />
+                                    <asp:Button ID="btnSearch" CssClass="form-control btn btn-primary" runat="server" Text="Search" OnClick="btnSearch_Click" />
+                                </div>
+
+                                <div class="col-xs-2">
+                                    <asp:Button ID="btnReset" CssClass="form-control btn btn-primary" runat="server" Text="Reset" OnClick="btnReset_Click"/>
                                 </div>
                                 <div class="col-xs-2">
-                                    <asp:Button ID="btnReset" CssClass="form-control btn btn-primary" runat="server" Text="Reset" />
+                                    <asp:Button ID="btnToday" CssClass="form-control btn btn-primary" runat="server" Text="Today" OnClick="btnToday_Click" />
                                 </div>
                                 <div class="col-xs-2">
-                                    <asp:Button ID="btnToday" CssClass="form-control btn btn-primary" runat="server" Text="Today" />
+                                    <asp:Button ID="btnYesterday" CssClass="form-control btn btn-primary" runat="server" Text="Yesterday" OnClick="btnYesterday_Click"/>
                                 </div>
                                 <div class="col-xs-2">
-                                    <asp:Button ID="btnYesterday" CssClass="form-control btn btn-primary" runat="server" Text="Yesterday" />
+                                    <asp:Button ID="btnLastWeek" CssClass="form-control btn btn-primary" runat="server" Text="Last Week" OnClick="btnLastWeek_Click"/>
                                 </div>
                                 <div class="col-xs-2">
-                                    <asp:Button ID="btnLastWeek" CssClass="form-control btn btn-primary" runat="server" Text="Last Week" />
-                                </div>
-                                <div class="col-xs-2">
-                                    <asp:Button ID="btnThisMonth" CssClass="form-control btn btn-primary" runat="server" Text="This Month" />
+                                    <asp:Button ID="btnThisMonth" CssClass="form-control btn btn-primary" runat="server" Text="This Month" OnClick="btnThisMonth_Click"/>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +401,7 @@
                         </div>
 
 
-                        <asp:GridView ID="gvPatientDetails" runat="server" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" CssClass="table table-bordered table-hover table-responsive" OnPreRender="gvPatientDetails_PreRender" Style="table-layout: fixed; -ms-word-wrap: break-word; word-wrap: break-word;" Width="100%" Height="300px">
+                        <asp:GridView ID="gvPatientDetails" runat="server" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" CssClass="table table-striped" OnPreRender="gvPatientDetails_PreRender" Style="table-layout: fixed; -ms-word-wrap: break-word; word-wrap: break-word;" Width="100%" Height="350px">
                             <HeaderStyle CssClass="bg-clouds" />
                             <EmptyDataTemplate>
                                 No record
@@ -348,6 +417,18 @@
                                 <asp:TemplateField HeaderText="Description" ItemStyle-CssClass="Description">
                                     <ItemTemplate>
                                         <asp:Label ID="gv_lbl_gradeImage" runat="server" CssClass="control-label" Text='<%#Eval("Grade_Image_dec")%>'></asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Description1" ItemStyle-CssClass="Description">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_lbl_gradeImage1" runat="server" CssClass="control-label" Text='<%#Eval("Grade_Image_dec")%>'></asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Description2" ItemStyle-CssClass="Description">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_lbl_gradeImage2" runat="server" CssClass="control-label" Text='<%#Eval("Grade_Image_dec")%>'></asp:Label>
 
                                     </ItemTemplate>
                                 </asp:TemplateField>

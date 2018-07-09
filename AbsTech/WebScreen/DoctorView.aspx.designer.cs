@@ -31,6 +31,33 @@ namespace AbsTech.WebScreen {
         protected global::System.Web.UI.UpdatePanel updtPnlMain;
         
         /// <summary>
+        /// btnRetreiveAndView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRetreiveAndView;
+        
+        /// <summary>
+        /// btnCreateReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateReport;
+        
+        /// <summary>
+        /// btnCreateTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateTemplate;
+        
+        /// <summary>
         /// txtPatientId control.
         /// </summary>
         /// <remarks>

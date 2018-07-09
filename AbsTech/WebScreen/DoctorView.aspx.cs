@@ -44,6 +44,108 @@ namespace AbsTech.WebScreen
             dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
             dt.Rows.Add(dr_value);
             dt.AcceptChanges();
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "4";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
+            dr_value = dt.NewRow();
+            dr_value["rowid"] = "3";
+            dr_value["Grade"] = "304";
+            dr_value["Grade_Image_dec"] = "Stainless steel plate,sheet and trip-Specification";
+            dt.Rows.Add(dr_value);
+            dt.AcceptChanges();
+
+
             gvPatientDetails.DataSource = dt;
             gvPatientDetails.DataBind();
 
@@ -69,6 +171,64 @@ namespace AbsTech.WebScreen
             {
                 throw ex;
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnToday_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnYesterday_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnLastWeek_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnThisMonth_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnRetreiveAndView_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnCreateTemplate_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+
+        protected void btnCreateReport_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(5000);
+            Loadgv();
+        }
+        private void Loadgv()
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "LoadGvKey", "gvPatientDetailsDatatable", false);
         }
     }
 }
