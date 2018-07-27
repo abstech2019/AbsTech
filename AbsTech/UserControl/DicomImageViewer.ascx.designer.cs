@@ -11,14 +11,5 @@ namespace AbsTech.UserControl {
     
     
     public partial class DicomImageViewer {
-        
-        /// <summary>
-        /// pnlImageViewer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlImageViewer;
     }
 }
