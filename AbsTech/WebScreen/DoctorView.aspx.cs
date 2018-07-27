@@ -212,7 +212,6 @@ namespace AbsTech.WebScreen
         protected void btnRetreiveAndView_Click(object sender, EventArgs e)
         {
             Thread.Sleep(5000);
-            Response.Redirect("ViewDicom.aspx");
             Loadgv();
         }
 
