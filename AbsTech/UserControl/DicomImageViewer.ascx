@@ -39,7 +39,8 @@
         </div>
         <br>
         <%--<button id="rotate" class="btn">Rotate 90</button>--%>
-        <input type="button" id="rotate" class="btn" value="Rotate 90" />
+        <input type="button" id="btnRotate" class="btn" value="Rotate 90" />
+        <input type="button" id="btnAntiRotate" class="btn" value="Rotate -90" />
         <br>
         <div class="row">
             <div class="col-md-6">
@@ -298,12 +299,18 @@
     //});
 
 
-    document.getElementById('rotate').addEventListener('click', function (e) {
+    document.getElementById('btnRotate').addEventListener('click', function (e) {
                var image = cornerstone.getImage(element);
 				var viewport = cornerstone.getViewport(element);
                 viewport.rotation += 90;
 				cornerstone.setViewport(element, viewport);
-        });
+    });
+    document.getElementById('btnAntiRotate').addEventListener('click', function (e) {
+        var image = cornerstone.getImage(element);
+        var viewport = cornerstone.getViewport(element);
+        viewport.rotation -= 90;
+        cornerstone.setViewport(element, viewport);
+    });
 
 
     //document.getElementById('toggleCollapseInfo').addEventListener('click', function () {
