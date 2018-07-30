@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewDicom.aspx.cs" Inherits="AbsTech.WebScreen.ViewDicom" MasterPageFile="~/WebScreen/DicomViewer.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewDicom.aspx.cs" Inherits="AbsTech.WebScreen.ViewDicom" MasterPageFile="~/WebScreen/DicomViewer.Master" EnableEventValidation="false" %>
 <%@ Register Src="~/UserControl/DicomImageViewer.ascx" TagPrefix="uc1" TagName="DicomImageViewer" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
