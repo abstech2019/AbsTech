@@ -8,7 +8,6 @@ function getBlobUrl (url) {
 }
 
 function UrlExists (url) {
-	alert(url);
   const http = new XMLHttpRequest();
   http.open('HEAD', url, false);
   http.send();
@@ -19,20 +18,22 @@ function UrlExists (url) {
 // let webWorkerUrl = getBlobUrl('https://unpkg.com/cornerstone-wado-image-loader/dist/cornerstoneWADOImageLoaderWebWorker.min.js');
 // let codecsUrl = getBlobUrl('https://unpkg.com/cornerstone-wado-image-loader/dist/cornerstoneWADOImageLoaderCodecs.js');
 
-//let webworkerurl = getbloburl('https://raw.githubusercontent.com/abstech2019/AbsTech/master/AbsTech/Scripts/DicomView/cornerstoneWADOImageLoaderWebWorker.min.js');
- //let codecsurl = getbloburl('https://raw.githubusercontent.com/abstech2019/AbsTech/master/AbsTech/Scripts/DicomView/cornerstoneWADOImageLoaderCodecs.js');
+////let webworkerurl = getbloburl('https://raw.githubusercontent.com/abstech2019/AbsTech/master/AbsTech/Scripts/DicomView/cornerstoneWADOImageLoaderWebWorker.min.js');
+//// let codecsurl = getbloburl('https://raw.githubusercontent.com/abstech2019/AbsTech/master/AbsTech/Scripts/DicomView/cornerstoneWADOImageLoaderCodecs.js');
 
 // if (UrlExists('../../dist/cornerstoneWADOImageLoaderWebWorker.min.js')) {
-  // webWorkerUrl = '../../dist/cornerstoneWADOImageLoaderWebWorker.min.js';
+//   webWorkerUrl = '../../dist/cornerstoneWADOImageLoaderWebWorker.min.js';
 // }
 
 // if (UrlExists('../../dist/cornerstoneWADOImageLoaderCodecs.js')) {
-  // codecsUrl = '../dist/cornerstoneWADOImageLoaderCodecs.js';
+//   codecsUrl = '../dist/cornerstoneWADOImageLoaderCodecs.js';
 // }
 let webWorkerUrl = "";
 let codecsUrl = "";
 webWorkerUrl = '../Scripts/DicomView/cornerstoneWADOImageLoaderWebWorker.min.js';
 codecsUrl = '../DicomView/cornerstoneWADOImageLoaderCodecs.js';
+
+
 try {
   window.cornerstoneWADOImageLoader.webWorkerManager.initialize({
     maxWebWorkers: 4,

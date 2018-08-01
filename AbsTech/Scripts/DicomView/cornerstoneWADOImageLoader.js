@@ -1,5 +1,3 @@
-/// <reference path="cornerstoneWADOImageLoaderWebWorker.min.js" />
-/// <reference path="../DataTables-1.10.6/media/js/jquery.js" />
 /*! cornerstone-wado-image-loader - 2.1.4 - 2018-07-11 | (c) 2016 Chris Hafey | https://github.com/cornerstonejs/cornerstoneWADOImageLoader */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3653,13 +3651,13 @@ var options = (0, _options.getOptions)();
 var defaultConfig = {
   maxWebWorkers: navigator.hardwareConcurrency || 1,
   startWebWorkersOnDemand: true,
-  webWorkerPath: '../Scripts/DicomView/cornerstoneWADOImageLoaderWebWorker.js',
+  webWorkerPath: '../../dist/cornerstoneWADOImageLoaderWebWorker.js',
   webWorkerTaskPaths: [],
   taskConfiguration: {
     decodeTask: {
       loadCodecsOnStartup: true,
       initializeCodecsOnStartup: false,
-      codecsPath: 'cornerstoneWADOImageLoaderCodecs.js',
+      codecsPath: '../dist/cornerstoneWADOImageLoaderCodecs.js',
       usePDFJS: false,
       strict: options.strict
     }
